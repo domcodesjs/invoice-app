@@ -59,3 +59,37 @@
 // Save as Draft
 // Save & Send
 // <!-- Create new invoice end -->
+
+import { useEffect, useState } from 'react';
+import styled from 'styled-components';
+import data from '../../data.json';
+
+export const Invoices = () => {
+  const [invoices, setInvoices] = useState(null);
+
+  useEffect(() => {
+    setInvoices(data);
+  }, []);
+
+  return invoices ? (
+    <main>
+      <Header>
+        <h1>Invoices</h1>
+      </Header>
+
+      <InvoiceList>
+        {invoices.map((invoice, i) => (
+          <InvoiceListItem key={i}>{invoice.clientName}</InvoiceListItem>
+        ))}
+      </InvoiceList>
+    </main>
+  ) : null;
+};
+
+const Header = styled.header``;
+
+const InvoiceList = styled.ul``;
+
+const InvoiceListItem = styled.li``;
+
+export default Invoices;
